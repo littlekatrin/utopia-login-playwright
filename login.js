@@ -12,8 +12,8 @@ async function runLoginTest() {
 
   // Take care of myself
   await page.goto('https://utopia-game.com/shared/?next=/wol/game/throne');
-  await page.fill('#id_username', process.env.USERNAME);
-  await page.fill('#id_password', process.env.PASSWORD);
+  await page.fill('#id_username', process.env.UTO_USERNAME);
+  await page.fill('#id_password', process.env.UTO_PASSWORD);
   await page.click('.g-recaptcha');
   await page.waitForLoadState('domcontentloaded');
   const royalCommand = await page.$('#throne-monarch-message');
