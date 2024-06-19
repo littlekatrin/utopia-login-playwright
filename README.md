@@ -30,8 +30,8 @@ npx playwright install
 Create a `.env` file in the root directory of the project and add your credentials:
 
 ```
-USERNAME=your-username
-PASSWORD=your-password
+UTO_USERNAME=your-username
+UTO_PASSWORD=your-password
 ```
 
 ### 4. Run the Script
