@@ -33,10 +33,10 @@ async function runLoginTest() {
 }
 
 function scheduleNextRun() {
-  // Calculate the delay until the next hour and add a random delay of 1-5 minutes
+  // Calculate the delay until the next hour and add a random delay of 1-20 minutes
   const now = new Date();
   const nextHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
-  const randomDelay = Math.floor(Math.random() * 4 + 1) * 60 * 1000;
+  const randomDelay = Math.floor(Math.random() * 20 + 1) * 60 * 1000;
   const totalDelay = nextHour.getTime() - now.getTime() + randomDelay;
 
   const nextRunTime = new Date(now.getTime() + totalDelay);
