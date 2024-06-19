@@ -1,0 +1,15 @@
+{
+  "name": "utopia-login-playwright",
+  "version": "1.0.0",
+  "description": "Playwright script to automate login for Utopia game.",
+  "main": "login.js",
+  "scripts": {
+    "autologin": "node login.js"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.44.1",
+    "dotenv": "^16.4.5"
+  },
+  "author": "Katie N. <https://github.com/littlekatrin>",
+  "license": "MIT"
+}

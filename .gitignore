@@ -1,0 +1,5 @@
+# Secrets and noise
+.env
+data/
+test-results/
+node_modules/
