@@ -21,7 +21,7 @@ cd utopia-login-playwright
 Install the necessary npm packages:
 
 ```
-npm install @playwright/test dotenv
+npm install
 ```
 
 ### 3. Set Up Environment Variables
