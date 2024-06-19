@@ -22,6 +22,7 @@ Install the necessary npm packages:
 
 ```
 npm install
+npx playwright install
 ```
 
 ### 3. Set Up Environment Variables
@@ -38,7 +39,7 @@ PASSWORD=your-password
 Execute the script using Node.js:
 
 ```
-node autologin
+npm run autologin
 ```
 
 The script will run immediately and then schedule the next run to occur within the first 5 minutes of each subsequent hour.
