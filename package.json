@@ -1,7 +1,7 @@
 {
   "name": "utopia-login-playwright",
-  "version": "1.0.0",
-  "description": "Playwright script to automate login for Utopia game.",
+  "version": "1.1.0",
+  "description": "Playwright script to automate logins for the game Utopia.",
   "main": "login.js",
   "scripts": {
     "autologin": "node login.js"
