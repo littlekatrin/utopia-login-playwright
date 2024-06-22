@@ -51,9 +51,22 @@ The script logs the start and end times of each test run, as well as the exact t
 ### Example Log Output
 
 ```
-Starting test at: 6/18/2024, 6:00:46 PM
-Test completed at: 6/18/2024, 6:00:49 PM
-Next run scheduled at 6/18/2024, 7:02:00 PM (in 61.12 minutes)
+Starting login at: 6/22/2024, 5:39:21 PM
+Active Spell: FERTILE_LANDS (4 days)
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (12 days)
+Casting INSPIRE_ARMY ...
+-------------------------------------
+Starting sitter login at: 6/22/2024, 5:39:25 PM
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (0 days)
+Active Spell: FERTILE_LANDS (14 days)
+Active Spell: FANATICISM (6 days)
+Active Spell: NATURE'S_BLESSING (33 days)
+Active Spell: MINOR_PROTECTION (13 days)
+Casting FOUNTAIN_OF_KNOWLEDGE ...
+Casting INSPIRE_ARMY ...
+-------------------------------------
+Login(s) completed at: 6/22/2024, 5:39:26 PM
+Next login scheduled at 6/22/2024, 6:20:00 PM (in 40.56 minutes)
 ```
 
 ## Troubleshooting
