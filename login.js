@@ -1,7 +1,48 @@
 const { test, expect, chromium } = require('@playwright/test');
 require('dotenv').config();
 
-async function runLoginTest() {
+async function castSpell(page, spell, sitter = false) {
+  if (sitter) {
+    await page.goto('https://utopia-game.com/wol/sit/game/enchantment');
+  } else {
+    await page.goto('https://utopia-game.com/wol/game/enchantment');
+  }
+  await page.selectOption('#id_self_spell', spell);
+  await page.click('input.button[type="submit"]');
+}
+
+async function checkAndCastSpells(page, spell) {
+  const spans = await page.$$('span.good');
+  let needsRefresh = true;
+  let spellName = '';
+
+  // Check active self spells for the desired spell
+  for (const span of spans) {
+    const textContent = await span.textContent();
+    spellName = textContent.trim();
+    let currentSpell = textContent.trim().toUpperCase().replace(/ /g, '_');
+    
+    if (currentSpell === spell) {
+      console.log(`Found ${spellName}`);
+      const nextSibling = await span.evaluate(node => node.nextSibling.textContent.trim());
+      if (nextSibling.includes("(-)")) {
+        console.log(`Duration of ${spellName} is (-), refreshing...`);
+        needsRefresh = true;
+      } else {
+        console.log(`${spellName} is active for ${nextSibling}`);
+        needsRefresh = false;
+      }
+      break;
+    }
+  }
+
+  if (needsRefresh) {
+    await castSpell(page, spell);
+    console.log(`${spellName} cast!`);
+  }
+}
+
+async function runLoginTest(doSitter, spell) {
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -10,7 +51,7 @@ async function runLoginTest() {
 
   await context.tracing.start({ screenshots: true, snapshots: true });
 
-  // Take care of myself
+  // Login to throne page for Hourly GC Bonus
   await page.goto('https://utopia-game.com/shared/?next=/wol/game/throne');
   await page.fill('#id_username', process.env.UTO_USERNAME);
   await page.fill('#id_password', process.env.UTO_PASSWORD);
@@ -19,20 +60,30 @@ async function runLoginTest() {
   const royalCommand = await page.$('#throne-monarch-message');
   expect(royalCommand).not.toBeNull();
 
-  // then do the sitter with the same authentication
-  await page.goto('https://utopia-game.com/wol/sit/game/throne');
-  await page.waitForLoadState('domcontentloaded');
-  const royalCommand2 = await page.$('#throne-monarch-message');
-  expect(royalCommand2).not.toBeNull();
+  // Cast self-spells as needed
+  await checkAndCastSpells(page, spell);
+
+  // Repeat for sitter if needed
+  if (doSitter) {
+    console.log('-------------------------------------')
+    console.log('Starting sitter login at:', new Date().toLocaleString());
+    await page.goto('https://utopia-game.com/wol/sit/game/throne');
+    await page.waitForLoadState('domcontentloaded');
+    const royalCommand2 = await page.$('#throne-monarch-message');
+    expect(royalCommand2).not.toBeNull();
+
+    await checkAndCastSpells(page, spell, true);
+  }
 
   await context.tracing.stop({ path: 'data/trace.zip' });
 
   await browser.close();
 
-  console.log('Login completed at:', new Date().toLocaleString());
+  console.log('-------------------------------------')
+  console.log('Login(s) completed at:', new Date().toLocaleString());
 }
 
-function scheduleNextRun() {
+function scheduleNextRun(doSitter, spell) {
   // Calculate the delay until the next hour and add a random delay of 1-20 minutes
   const now = new Date();
   const nextHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
@@ -43,16 +94,20 @@ function scheduleNextRun() {
   const minutesUntilNextRun = totalDelay / 1000 / 60;
 
   console.log(`Next login scheduled at ${nextRunTime.toLocaleString()} (in ${minutesUntilNextRun.toFixed(2)} minutes)`);
+  console.log('');
 
   // Schedule the next run
   setTimeout(() => {
-    runLoginTest().then(() => {
-      scheduleNextRun(); // Schedule the subsequent run
+    runLoginTest(doSitter, spell).then(() => {
+      scheduleNextRun(doSitter, spell); // Schedule the subsequent run
     });
   }, totalDelay);
 }
 
-// Run the test immediately and schedule the next runs
-runLoginTest().then(() => {
-  scheduleNextRun();
+// Main
+const doSitter = true; // Change this to false if sitter actions are not needed
+const spell = 'FOUNTAIN_OF_KNOWLEDGE'; // Change this to the spell you want to cast
+
+runLoginTest(doSitter, spell).then(() => {
+  scheduleNextRun(doSitter, spell);
 });
