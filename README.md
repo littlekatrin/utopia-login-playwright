@@ -51,22 +51,44 @@ The script logs the start and end times of each test run, as well as the exact t
 ### Example Log Output
 
 ```
-Starting login at: 6/22/2024, 5:39:21 PM
-Active Spell: FERTILE_LANDS (4 days)
-Active Spell: FOUNTAIN_OF_KNOWLEDGE (12 days)
-Casting INSPIRE_ARMY ...
+Starting login at: 6/22/2024, 9:01:00 PM
+Active Spell: FERTILE_LANDS (0 days)
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (8 days)
+Active Spell: INSPIRE_ARMY (19 days)
+Active Spell: MINER'S_MYSTIQUE (11 days)
+Active Spell: GHOST_WORKERS (15 days)
+Casting FERTILE_LANDS ...
 -------------------------------------
-Starting sitter login at: 6/22/2024, 5:39:25 PM
-Active Spell: FOUNTAIN_OF_KNOWLEDGE (0 days)
-Active Spell: FERTILE_LANDS (14 days)
-Active Spell: FANATICISM (6 days)
-Active Spell: NATURE'S_BLESSING (33 days)
-Active Spell: MINOR_PROTECTION (13 days)
-Casting FOUNTAIN_OF_KNOWLEDGE ...
-Casting INSPIRE_ARMY ...
+Starting sitter login at: 6/22/2024, 9:01:04 PM
+Active Spell: FERTILE_LANDS (10 days)
+Active Spell: FANATICISM (2 days)
+Active Spell: NATURE'S_BLESSING (29 days)
+Active Spell: MINOR_PROTECTION (9 days)
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (4 days)
+Active Spell: INSPIRE_ARMY (10 days)
+Active Spell: LOVE_AND_PEACE (11 days)
 -------------------------------------
-Login(s) completed at: 6/22/2024, 5:39:26 PM
-Next login scheduled at 6/22/2024, 6:20:00 PM (in 40.56 minutes)
+Login(s) completed at: 6/22/2024, 9:01:05 PM
+Next login scheduled at 6/22/2024, 10:08:00 PM (in 66.90 minutes)
+
+Starting login at: 6/22/2024, 10:08:00 PM
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (7 days)
+Active Spell: INSPIRE_ARMY (18 days)
+Active Spell: MINER'S_MYSTIQUE (10 days)
+Active Spell: GHOST_WORKERS (14 days)
+Active Spell: FERTILE_LANDS (32 days)
+-------------------------------------
+Starting sitter login at: 6/22/2024, 10:08:03 PM
+Active Spell: FERTILE_LANDS (9 days)
+Active Spell: FANATICISM (1 days)
+Active Spell: NATURE'S_BLESSING (28 days)
+Active Spell: MINOR_PROTECTION (8 days)
+Active Spell: FOUNTAIN_OF_KNOWLEDGE (3 days)
+Active Spell: INSPIRE_ARMY (9 days)
+Active Spell: LOVE_AND_PEACE (10 days)
+-------------------------------------
+Login(s) completed at: 6/22/2024, 10:08:04 PM
+Next login scheduled at 6/22/2024, 11:06:00 PM (in 57.93 minutes)
 ```
 
 ## Troubleshooting
